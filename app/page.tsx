@@ -6,6 +6,7 @@ import { SettingsModal } from "@/components/SettingsModal";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { ChangelogModal } from "@/components/ChangelogModal";
 import { NavigateSearch } from "@/components/NavigateSearch";
+import { RouteSelector } from "@/components/RouteSelector";
 import { TurnBanner } from "@/components/TurnBanner";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useWazeAlerts } from "@/hooks/useWazeAlerts";

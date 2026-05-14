@@ -87,7 +87,7 @@ export async function GET(request: NextRequest) {
       q: query,
       format: "json",
       limit: "20", // Get many results to sort through
-      countrycodes: "us",
+      countrycodes: "au",
       addressdetails: "1",
       normalizeaddress: "1",
       dedupe: "1", // Remove duplicate results

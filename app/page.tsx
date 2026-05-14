@@ -1066,7 +1066,7 @@ function LiveHome() {
       )}
 
       {/* Navigate Search + Destination Card (hidden - navigation in development) */}
-      <div className="absolute top-16 left-4 z-30 flex flex-col gap-3 hidden">
+      <div className="absolute top-16 left-4 z-30 flex flex-col gap-3">
         <NavigateSearch
           isDarkMode={effectiveDarkMode}
           onSelectDestination={handleSelectDestination}

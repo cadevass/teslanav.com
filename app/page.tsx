@@ -8,6 +8,7 @@ import { ChangelogModal } from "@/components/ChangelogModal";
 import { NavigateSearch } from "@/components/NavigateSearch";
 import { RouteSelector } from "@/components/RouteSelector";
 import { TurnBanner } from "@/components/TurnBanner";
+import { SpeedCameraAlert } from "@/components/SpeedCameraAlert";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useWazeAlerts } from "@/hooks/useWazeAlerts";
 import { useSpeedCameras } from "@/hooks/useSpeedCameras";
@@ -1206,6 +1207,16 @@ function LiveHome() {
       {destination && route && latitude && longitude && (
         <TurnBanner
           steps={route.steps}
+          userLat={latitude}
+          userLng={longitude}
+          isDarkMode={effectiveDarkMode}
+        />
+      )}
+
+      {/* Speed camera proximity alert */}
+      {latitude && longitude && (
+        <SpeedCameraAlert
+          cameras={cameras.map(c => ({ id: c.id, lat: c.lat, lng: c.lon }))}
           userLat={latitude}
           userLng={longitude}
           isDarkMode={effectiveDarkMode}

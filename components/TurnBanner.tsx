@@ -27,22 +27,17 @@ function formatStepDistance(meters: number): string {
   return `${Math.round(meters / 10) * 10} m`;
 }
 
-function getTurnArrow(type: string, modifier?: string): string {
-  if (type === "arrive") return "🏁";
-  if (type === "depart") return "🚀";
-  if (type === "roundabout" || type === "rotary") return "🔄";
-  if (!modifier) return "⬆️";
-  switch (modifier) {
-    case "left": return "⬅️";
-    case "slight left": return "↖️";
-    case "sharp left": return "◀️";
-    case "right": return "➡️";
-    case "slight right": return "↗️";
-    case "sharp right": return "▶️";
-    case "uturn": return "↩️";
-    case "straight": return "⬆️";
-    default: return "⬆️";
-  }
+function getTurnArrow(type: string, modifier?: string): React.ReactNode {
+  const cls = "w-10 h-10 text-blue-400";
+  if (type === "arrive") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>;
+  if (type === "depart") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>;
+  if (type === "roundabout" || type === "rotary") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>;
+  if (modifier === "left" || modifier === "sharp left") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>;
+  if (modifier === "slight left") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18M3 12V6"/></svg>;
+  if (modifier === "right" || modifier === "sharp right") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>;
+  if (modifier === "slight right") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H3M21 12V6"/></svg>;
+  if (modifier === "uturn") return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"/></svg>;
+  return <svg className={cls} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>;
 }
 
 export function TurnBanner({ steps, userLat, userLng, isDarkMode }: TurnBannerProps) {
@@ -103,7 +98,7 @@ export function TurnBanner({ steps, userLat, userLng, isDarkMode }: TurnBannerPr
     >
       {/* Current instruction */}
       <div className="flex items-center gap-3">
-        <span className="text-4xl leading-none">{arrow}</span>
+        <div className="flex-shrink-0">{arrow}</div>
         <div className="flex flex-col">
           <span className="text-xl font-bold leading-tight">{currentStep.instruction}</span>
           {distance && (

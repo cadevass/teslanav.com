@@ -6,7 +6,7 @@ import { SettingsModal } from "@/components/SettingsModal";
 import { FeedbackModal } from "@/components/FeedbackModal";
 import { ChangelogModal } from "@/components/ChangelogModal";
 import { NavigateSearch } from "@/components/NavigateSearch";
-import { RouteSelector } from "@/components/RouteSelector";
+import { TurnBanner } from "@/components/TurnBanner";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useWazeAlerts } from "@/hooks/useWazeAlerts";
 import { useSpeedCameras } from "@/hooks/useSpeedCameras";
@@ -1201,6 +1201,16 @@ function LiveHome() {
         )}
       </div>
 
+      {/* Turn-by-turn banner */}
+      {destination && route && latitude && longitude && (
+        <TurnBanner
+          steps={route.steps}
+          userLat={latitude}
+          userLng={longitude}
+          isDarkMode={effectiveDarkMode}
+        />
+      )}
+      
       {/* Top Right - Compass + Alert Summary (stacked) */}
       <div className="absolute top-4 right-4 z-30 flex flex-col items-end gap-3">
         {/* Compass/Orientation Toggle */}

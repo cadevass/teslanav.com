@@ -41,11 +41,11 @@ function formatDuration(seconds: number): string {
 
 // Format distance in meters to human-readable string
 function formatDistance(meters: number): string {
-  const miles = meters / 1609.34;
-  if (miles >= 10) {
-    return `${Math.round(miles)} mi`;
+  const km = meters / 1000;
+  if (km >= 10) {
+    return `${Math.round(km)} km`;
   }
-  return `${miles.toFixed(1)} mi`;
+  return `${km.toFixed(1)} km`;
 }
 
 export default function Home() {
